@@ -55,22 +55,22 @@ colr  : [0,0,0],      // fill color
 CA    : 1,            // stroke transparency
 COLR  : [0,0,0],      // stroke color
 bmode : "/Normal",    // blend mode
-lwidth:  1,          // line width
-lcap  :  0,          // line cap
-ljoin :  0,          // line join
-mlimit: 10,          // miter limit
-doff: 0, dash: [],   // dashing offset and pattern
-pth : Path,          // current path (absolute coordinates)
-cpth: Path           // current clipping path (absolute coordinates)
+lwidth:  1,           // line width
+lcap  :  0,           // line cap
+ljoin :  0,           // line join
+mlimit: 10,           // miter limit
+doff: 0, dash: [],    // dashing offset and a pattern
+pth : Path,           // current path (absolute coordinates)
+cpth: Path            // current clipping path (absolute coordinates)
 ```
 ## Font object
 ```javascript
-Tc   :   0, // character spacing
-Th   : 100, // horizontal scale
-Tl   :   0, // leading
-Tfs  :   1, // font size
-Tf   : "Helvetica-Bold",   // PostScriptName of the required font 
-Tm   : [1,0,0,1,0,0]       // transformation matrix
+Tc   :   0,           // character spacing
+Th   : 100,           // horizontal scale
+Tl   :   0,           // leading
+Tfs  :   1,           // font size
+Tf   : "Helvetica-Bold",   // PostScriptName of the current font 
+Tm   : [1,0,0,1,0,0]       // text transformation matrix
 ```
 
 ## Path object
