@@ -1,7 +1,10 @@
 # PDFI.js
 [!!! Live Demo !!!](http://www.ivank.net/veci/pdfi/)  PDFI.js is a robust PDF and PostScript processor with a very simple interface. It is used in [Photopea](https://www.Photopea.com) to load and save PS, EPS and PDF files.
 
-If you want to render a PDF file, use [pdf.js](https://github.com/mozilla/pdf.js). For all other PDF-related operations, use PDFI.js. The library consists of PSI.js (PostScript Interpreter) and PDFI.js (PDF Interpreter), which is an extension of PSI.js.
+If you want to render a PDF file, use [pdf.js](https://github.com/mozilla/pdf.js). For all other PDF-related operations, use PDFI.js. The library consists of three important parts
+* PSI.js - PostScript Interpreter
+* PDFI.js - PDF Interpreter, an extension of PSI.js
+* ToPDF.js - PDF generator, can be used separately (without PSI or PDFI)
 
 <img src="interface.svg" width="50%">
 
