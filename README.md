@@ -5,7 +5,7 @@ If you want to render a PDF file, use [pdf.js](https://github.com/mozilla/pdf.js
 
 <img src="interface.svg" width="50%">
 
-## Parsing
+# Parsing
 
 #### `PDFI.Parse(b, w)`
 * `b`: ArrayBuffer - a binary PDF file
@@ -75,4 +75,41 @@ Tm   : [1,0,0,1,0,0]       // transformation matrix
 cmds : ["M", "L", "C", "Z"],         // drawing commands (moveTo, lineTo, curveTo, closePath)
 crds : [0,0,  1,1,  2,2,3,0,2,1  ]   // coordinates for drawing commands (2 for M and L, 6 for C, 0 for Z)
 ```
+
+You can make your own Writers and give them to PSI / PDFI. Your writer can do simple or complex work. E.g. you can extract all raster images out of PDF or convert the PDF into SVG or your own internal format. Here is a simple writer, that counts pages and stores all strings.
+
+```javascript
+var numPages = 0, strings = [], ef = function(){};
+var W = {  // our writer
+    StartPage:ef, Fill:ef, Stroke:ef, PutImage:ef, Done:ef,
+    PutText : function(gst, str, stw) {  strings.push(str);  },
+    ShowPage: function() {  numPages++;  }
+};  
+PDFI.Parse(pdfFile, W);
+console.log(numPages, strings);
+```
+
+# Generating PDF files
+
+This repository contains the ToPDF (ToPDF.js) Writer. You can use it with PSI to convert PostScript to PDF (or even with PDFI to convert PDF to PDF), but you can also use it to generate PDFs from your own format.
+
+Here is an example of drawing a simple square and [the result](http://www.ivank.net/veci/pdfi/square.pdf).
+```javascript
+var gst = {/* ... */};  // set default parameters or use PSI._getState();
+gst.colr = [0.8,0,0.8];     // dark red fill color
+gst.pth = {  cmds:["M","L","L","L","Z"], crds:[20,20,80,20,80,80,20,80]  };  // a square
+var pdf = new ToPDF();
+pdf.StartPage(0,0,100,100);  pdf.Fill(gst);  pdf.ShowPage();  pdf.Done();
+console.log(pdf.buffer);  // ArrayBuffer of the PDF file
+```
+
+The Writer ToContext2D (ToContext2D.js) can be used as a simple renderer of PS / PDF files.
+```javascript
+var pNum  = 0;  // number of the page, that you want to render
+var scale = 1;  // the scale of the document
+var wrt = new ToContext2D(pNum, scale);
+PDFI.Parse(myFile, wrt);
+document.body.appendChild(wrt.canvas);
+```
+
 
