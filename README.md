@@ -99,7 +99,7 @@ This repository contains the ToPDF (ToPDF.js) Writer. You can use it with PSI to
 Here is an example of drawing a simple square and [the result](http://www.ivank.net/veci/pdfi/square.pdf).
 ```javascript
 var gst = {/* ... */};  // set default parameters or use PSI._getState();
-gst.colr = [0.8,0,0.8];     // dark red fill color
+gst.colr= [0.8,0,0.8];     // purple fill color
 gst.pth = {  cmds:["M","L","L","L","Z"], crds:[20,20,80,20,80,80,20,80]  };  // a square
 var pdf = new ToPDF();
 pdf.StartPage(0,0,100,100);  pdf.Fill(gst);  pdf.ShowPage();  pdf.Done();
