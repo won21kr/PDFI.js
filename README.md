@@ -48,14 +48,14 @@ The Image is a Uint8Array with binary data. If its size is `w * h * 4`, it conta
 The Graphic State is an object, containing the current graphic parameters (current path, current fill color, current stroke thickness). The Writer can read these parameters, but it shall not rewrite them.
 
 ```javascript
-ctm  : [1,0,0,1,0,0],// current transformation matrix
-font : Font,         // current text parameters
-ca   : 1,            // fill transparency
-colr : [0,0,0],      // fill color
-CA   : 1,            // stroke transparency
-COLR : [0,0,0],      // stroke color
-bmode: "/Normal",    // blend mode
-lwidt :  1,          // line width
+ctm   : [1,0,0,1,0,0],// current transformation matrix
+font  : Font,         // current text parameters
+ca    : 1,            // fill transparency
+colr  : [0,0,0],      // fill color
+CA    : 1,            // stroke transparency
+COLR  : [0,0,0],      // stroke color
+bmode : "/Normal",    // blend mode
+lwidth:  1,          // line width
 lcap  :  0,          // line cap
 ljoin :  0,          // line join
 mlimit: 10,          // miter limit
