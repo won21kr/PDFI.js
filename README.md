@@ -1,5 +1,5 @@
 # PDFI.js
-[!!! Live Demo !!!](http://www.ivank.net/veci/pdfi/)  PDFI.js is a robust PDF and PostScript processor with a very simple interface.
+[!!! Live Demo !!!](http://www.ivank.net/veci/pdfi/)  PDFI.js is a robust PDF and PostScript processor with a very simple interface. It is used in [Photopea](https://www.Photopea.com) to load and save PS, EPS and PDF files.
 
 If you want to render a PDF file, use [pdf.js](https://github.com/mozilla/pdf.js). For all other PDF-related operations, use PDFI.js. The library consists of PSI.js (PostScript Interpreter) and PDFI.js (PDF Interpreter), which is an extension of PSI.js.
 
@@ -7,9 +7,9 @@ If you want to render a PDF file, use [pdf.js](https://github.com/mozilla/pdf.js
 
 # Parsing
 
-#### `PDFI.Parse(b, w)`
-* `b`: ArrayBuffer - a binary PDF file
-* `w`: a Writer object (e.g. an instance of ToContext2D.js)
+#### `[ PDFI | PSI ].Parse(b, w)`
+* `b`: ArrayBuffer - a binary PDF or PS file
+* `w`: Writer object (e.g. an instance of ToContext2D.js)
 
 A parser (PDFI or PSI) takes a binary file and parses it. During that process, it calls methods of the **writer** (like `w.StartPage(...)`, `w.Fill(...)`, `w.Stroke(...)`, `w.PutText(...)`, `w.PutImage(...)`, `w.ShowPage()` ...). The data of the PDF file flow from the Parser to the Writer by calling these methods.
 
@@ -76,7 +76,7 @@ cmds : ["M", "L", "C", "Z"],         // drawing commands (moveTo, lineTo, curveT
 crds : [0,0,  1,1,  2,2,3,0,2,1  ]   // coordinates for drawing commands (2 for M and L, 6 for C, 0 for Z)
 ```
 
-You can make your own Writers and give them to PSI / PDFI. Your writer can do simple or complex work. E.g. you can extract all raster images out of PDF or convert the PDF into SVG or your own internal format. Here is a simple writer, that counts pages and stores all strings.
+You can make your own Writers and give them to PSI / PDFI. Your writer can do simple or complex work. E.g. you can extract all raster images out of a PDF or convert the PDF into SVG or your own format. Here is a simple writer, that counts pages and stores all strings.
 
 ```javascript
 var numPages = 0, strings = [], ef = function(){};
@@ -111,5 +111,5 @@ var wrt = new ToContext2D(pNum, scale);
 PDFI.Parse(myFile, wrt);
 document.body.appendChild(wrt.canvas);
 ```
-
+But you can use it as a guide for writing your own Writers.
 
